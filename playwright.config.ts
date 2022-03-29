@@ -30,6 +30,9 @@ const config: PlaywrightTestConfig = {
     // contextOptions: {
     //   ignoreHTTPSErrors: true,
     // },
+    video: {
+      mode: 'on',
+    }
   },
 
   projects: [
