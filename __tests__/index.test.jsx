@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import Home from '../pages/index'
+import PosterCreator from '../pages/index'
 
-describe('Home', () => {
+describe('Poster creator', () => {
   it('renders a heading', () => {
-    render(<Home />)
+    render(<PosterCreator />)
 
     const heading = screen.getByRole('heading', {
-      name: /welcome to next\.js!/i,
+        name: /poster creator/i,
     })
 
     expect(heading).toBeInTheDocument()
