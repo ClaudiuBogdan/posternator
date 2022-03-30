@@ -1,6 +1,7 @@
 import type { NextPage } from "next"
 import Head from "next/head"
 import styled from "styled-components"
+import { FileUploadField } from "../components/atoms/FileUploadField"
 
 const TitleStyled = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
@@ -18,6 +19,7 @@ const PosterCreator: NextPage = () => {
         <TitleStyled>
           Poster creator
         </TitleStyled>
+        <FileUploadField/>
       </main>
     </div>
   )
