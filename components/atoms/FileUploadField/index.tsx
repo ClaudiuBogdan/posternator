@@ -1,8 +1,8 @@
-import { DragEventHandler, FC, useCallback } from "react"
+import { DragEventHandler, FC } from "react"
 import {useDropzone} from "react-dropzone"
 
 type FileUploadFieldProps = {
-  onDragEnter?: DragEventHandler<T> | undefined;
+  onDragEnter?: DragEventHandler;
   onUpload?: (acceptedFiles: File[]) => void
 }
 

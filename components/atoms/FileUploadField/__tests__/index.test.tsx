@@ -1,7 +1,7 @@
 import { FileUploadField } from "../index"
 import {act, fireEvent, render, waitFor} from "@testing-library/react"
-import { FC, ReactNode } from "react"
 
+// Reference: https://www.npmjs.com/package/react-dropzone
 describe("File upload field", () => {
   test("invoke onDragEnter when dragenter event occurs", async () => {
     const file = new File([
