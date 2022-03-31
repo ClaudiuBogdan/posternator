@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
 import Head from "next/head"
 import styled from "styled-components"
-import { ImageEditor } from "../components/molecules/ImageEditor"
+import { ImageEditor } from "@/components/molecules/ImageEditor"
 
 const TitleStyled = styled.h1`
   color: ${({ theme }) => theme.colors.primary};

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { FC } from "react"
-import { logInfo } from "../../../logger"
+import logger from "global/logger"
 
 const imagePlaceholder = "/assets/images/image-preview-placeholder.svg"
 
@@ -10,7 +10,7 @@ type ImagePreviewProps = {
 
 export const ImagePreview: FC<ImagePreviewProps> = ({imageSrc}) => {
   const handleImageClick = () => {
-    logInfo({msg: "File uploaded"})
+    logger.info({msg: "File uploaded"})
   }
   return (
     <Image

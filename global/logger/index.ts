@@ -1,8 +1,9 @@
 import pino from "pino"
 import { logflarePinoVercel } from "pino-logflare"
-import { config } from "../config"
+import { config } from "../../config"
 
 const initLogger = () => {
+  // For local env and testing disable logflare
   if(config.env === "development" || config.env === "test")
     return pino({
       level: "debug",
@@ -34,10 +35,6 @@ const initLogger = () => {
 
 }
 
-// create pino logger
 const logger = initLogger()
 
-export const logInfo = logger.info
-export const logDebug = logger.debug
-export const logWarn = logger.warn
-export const logError = logger.error
+export default logger
