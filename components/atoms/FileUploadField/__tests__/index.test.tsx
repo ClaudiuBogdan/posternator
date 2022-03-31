@@ -5,18 +5,18 @@ import { FileUploadField } from "../index"
 describe("File upload field", () => {
   test("invoke onDragEnter when dragenter event occurs", async () => {
     const file = new File([
-      JSON.stringify({ping: true})
+      JSON.stringify({ping: true}),
     ], "ping.json", { type: "application/json" })
     const data = mockData([file])
     const onDragEnter = jest.fn()
-  
+
     const ui = (<FileUploadField onDragEnter={onDragEnter} />)
     const { container, rerender } = render(ui)
     const dropzone = container.querySelector("div")
-  
+
     dispatchEvt(dropzone!, "dragenter", data)
     await flushPromises(rerender, ui)
-  
+
     expect(onDragEnter).toHaveBeenCalled()
   })
 })
@@ -38,9 +38,9 @@ function mockData(files: File[]) {
       items: files.map(file => ({
         kind: "file",
         type: file.type,
-        getAsFile: () => file
+        getAsFile: () => file,
       })),
-      types: ["Files"]
-    }
+      types: ["Files"],
+    },
   }
 }

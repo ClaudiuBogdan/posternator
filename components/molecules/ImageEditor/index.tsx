@@ -1,4 +1,3 @@
-
 import { FC, useState } from "react"
 import { FileUploadField } from "../../atoms/FileUploadField"
 import { ImagePreview } from "../../atoms/ImagePreview"
@@ -10,8 +9,10 @@ export const ImageEditor: FC = () => {
   const handleFileUpload = (acceptedFiles: File[]) => {
     setUploadedFiles(acceptedFiles)
   }
+
   return (
-    <>  
+    <>
+      {isUploaded && (<p>File uploaded</p>)}
       <FileUploadField onUpload={handleFileUpload}/>
       <ImagePreview/>
     </>

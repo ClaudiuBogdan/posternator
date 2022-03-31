@@ -10,9 +10,10 @@ type ImagePreviewProps = {
 export const ImagePreview: FC<ImagePreviewProps> = ({imageSrc}) => {
 
   return (
-    <Image 
-      layout='fill'
-      src={imageSrc ?? imagePlaceholder} 
+    <Image
+      width={300}
+      height={500}
+      src={imageSrc ?? imagePlaceholder}
       alt="poster-preview" />
   )
 }

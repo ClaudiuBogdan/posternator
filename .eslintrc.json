@@ -1,5 +1,10 @@
 {
-  "extends": "next",
+  "extends": [
+    "next",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "eslint:recommended"
+  ],
   "plugins": [
     "unused-imports"
   ],
@@ -69,6 +74,39 @@
           "caseInsensitive": true
         }
       }
-    ]
+    ],
+    // Max empty lines
+    "no-multiple-empty-lines": [
+      1,
+      {
+        "max": 1,
+        "maxBOF": 0,
+        "maxEOF": 0
+      }
+    ],
+    // Comma dangle
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    // No trailing spaces
+    "no-trailing-spaces": "error",
+    // No unused vars
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "none",
+        "ignoreRestSiblings": false
+      }
+    ],
+    // No console
+    "no-console": "error"
+  },
+  "globals": {
+    "JSX": true
+  },
+  "env": {
+    "jest": true
   }
 }
