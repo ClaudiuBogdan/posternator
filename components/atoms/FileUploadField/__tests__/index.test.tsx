@@ -1,5 +1,5 @@
-import { FileUploadField } from "../index"
 import {act, fireEvent, render, waitFor} from "@testing-library/react"
+import { FileUploadField } from "../index"
 
 // Reference: https://www.npmjs.com/package/react-dropzone
 describe("File upload field", () => {

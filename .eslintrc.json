@@ -1,5 +1,8 @@
 {
   "extends": "next",
+  "plugins": [
+    "unused-imports"
+  ],
   "rules": {
     // enable additional rules
     "indent": [
@@ -18,6 +21,7 @@
       "error",
       "never"
     ],
+    "unused-imports/no-unused-imports": "error",
     // override configuration set by extending "eslint:recommended"
     "no-empty": "warn",
     "no-cond-assign": [
@@ -25,6 +29,46 @@
       "always"
     ],
     // disable rules from base configurations
-    "for-direction": "off"
+    "for-direction": "off",
+    // Import rules: https://dev.to/diballesteros/how-to-quickly-configure-eslint-for-import-sorting-2h73
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "components",
+            "group": "internal"
+          },
+          {
+            "pattern": "common",
+            "group": "internal"
+          },
+          {
+            "pattern": "routes/ **",
+            "group": "internal"
+          },
+          {
+            "pattern": "assets/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "internal"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }
