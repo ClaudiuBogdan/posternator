@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
+import {AppStyled} from "../global/styles"
 import PosterCreator from "../pages/index"
-import { AppStyled  } from "../pages/_styles"
 
 describe("Poster creator", () => {
   it("renders a heading", () => {
