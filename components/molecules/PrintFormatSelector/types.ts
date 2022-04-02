@@ -1,4 +1,4 @@
-export type PrintFormatSelectorProps = {   
+export type PrintFormatSelectorProps = {
     selectedOptionId: string
     onOptionSelected: (optionId: string) => void
 }

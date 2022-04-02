@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react"
+import { FC } from "react"
 import { RadioStyled } from "./styles"
 
 type RadioProps = {
@@ -11,13 +11,13 @@ type RadioProps = {
 export const Radio: FC<RadioProps> = ({id, label, checked, onOptionClick}) => {
   return (
     <RadioStyled onClick={() => onOptionClick && onOptionClick(id)}>
-      <input 
+      <input
         type="radio"
         name={id}
         checked={!!checked}
         id={id} />
-      
-      <label 
+
+      <label
         htmlFor={id}>
         {label}
       </label>
