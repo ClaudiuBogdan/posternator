@@ -1,9 +1,10 @@
 {
   "extends": [
-    "next",
+    "plugin:storybook/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    "eslint:recommended"
+    "eslint:recommended",
+    "next"
   ],
   "plugins": [
     "unused-imports"
