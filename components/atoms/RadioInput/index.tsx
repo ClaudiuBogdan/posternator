@@ -1,16 +1,16 @@
 import { FC } from "react"
-import { RadioStyled } from "./styles"
+import { RadioInputStyled } from "./styles"
 
-type RadioProps = {
+type RadioInputProps = {
   id: string
   label: string
   checked?: boolean
   onOptionClick?: (optionId: string) => void
 }
 
-export const Radio: FC<RadioProps> = ({id, label, checked, onOptionClick}) => {
+export const RadioInput: FC<RadioInputProps> = ({id, label, checked, onOptionClick}) => {
   return (
-    <RadioStyled onClick={() => onOptionClick && onOptionClick(id)}>
+    <RadioInputStyled onClick={() => onOptionClick && onOptionClick(id)}>
       <input
         type="radio"
         name={id}
@@ -21,6 +21,6 @@ export const Radio: FC<RadioProps> = ({id, label, checked, onOptionClick}) => {
         htmlFor={id}>
         {label}
       </label>
-    </RadioStyled>
+    </RadioInputStyled>
   )
 }

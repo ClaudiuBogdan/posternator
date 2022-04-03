@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Radio } from "components/atoms/Radio"
+import { RadioInput } from "components/atoms/RadioInput"
 import { printFormats } from "./data"
 import { PrintFormatSelectorStyled } from "./styles"
 import { PrintFormatSelectorProps } from "./types"
@@ -12,7 +12,7 @@ export const PrintFormatSelector: FC<PrintFormatSelectorProps> = ({selectedOptio
       <p>Paper print format: </p>
 
       {printFormats.map((printFormat) => (
-        <Radio
+        <RadioInput
           key={printFormat.id}
           id={printFormat.id}
           checked={printFormat.id === selectedOptionId}
