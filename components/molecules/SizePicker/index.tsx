@@ -27,10 +27,12 @@ export const SizePicker: FC<SizePickerProps> = () => {
       <SizeInput
         id={"poster-size-width"}
         value={size.width}
+        label={"width"}
         onChange={handleWidthChange } />
       <SizeInput
         id={"poster-size-height"}
         value={size.height}
+        label={"height"}
         onChange={handleHeightChange} />
     </SizeInputStyled>
   )
