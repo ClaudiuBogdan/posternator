@@ -10,7 +10,7 @@ export const SizeInput: FC<SizeInputProps> = ({id, value = 0.15, onChange}) => {
     onChange(meters)
   }
 
-  const centimeters = value * 100
+  const centimeters = Math.floor(value * 100)
 
   return (
     <SizeInputStyled>
