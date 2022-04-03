@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { FileUploadField } from "components/atoms/FileUploadField"
+import { FileUploadInput } from "components/atoms/FileUploadInput"
 import { ImagePreview } from "components/atoms/ImagePreview"
 import { Line } from "components/atoms/Line/types"
 import logger from "global/logger"
@@ -30,7 +30,7 @@ export const ImageEditor: FC = () => {
   return (
     <>
       <GuideLines {...{lines}} />
-      <FileUploadField onUpload={handleFileUpload}/>
+      <FileUploadInput onUpload={handleFileUpload}/>
       <ImagePreview {...{imageSrc}}/>
     </>
   )

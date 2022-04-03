@@ -1,12 +1,12 @@
 import { DragEventHandler, FC } from "react"
 import {useDropzone} from "react-dropzone"
 
-type FileUploadFieldProps = {
+type FileUploadInputProps = {
   onDragEnter?: DragEventHandler;
   onUpload?: (acceptedFiles: File[]) => void
 }
 
-export const FileUploadField: FC<FileUploadFieldProps> = ({onDragEnter, onUpload}) => {
+export const FileUploadInput: FC<FileUploadInputProps> = ({onDragEnter, onUpload}) => {
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop: onUpload, onDragEnter})
 

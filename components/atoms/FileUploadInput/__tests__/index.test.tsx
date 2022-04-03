@@ -1,5 +1,5 @@
 import {act, fireEvent, render, waitFor} from "@testing-library/react"
-import { FileUploadField } from "../index"
+import { FileUploadInput } from "../index"
 
 // Reference: https://www.npmjs.com/package/react-dropzone
 describe("File upload field", () => {
@@ -10,7 +10,7 @@ describe("File upload field", () => {
     const data = mockData([file])
     const onDragEnter = jest.fn()
 
-    const ui = (<FileUploadField onDragEnter={onDragEnter} />)
+    const ui = (<FileUploadInput onDragEnter={onDragEnter} />)
     const { container, rerender } = render(ui)
     const dropzone = container.querySelector("div")
 
