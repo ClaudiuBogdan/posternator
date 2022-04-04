@@ -3,7 +3,8 @@ import { FileUploadInput } from "components/atoms/FileUploadInput"
 import { ImagePreview } from "components/atoms/ImagePreview"
 import { Line } from "components/atoms/Line/types"
 import logger from "global/logger"
-import { GuideLines } from "../GuideLines"
+import { useImageUpload } from "hooks/useImageUpload"
+import { GuideLines } from "../../molecules/GuideLines"
 
 export const ImageEditor: FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<File[]>()
@@ -14,7 +15,11 @@ export const ImageEditor: FC = () => {
   }
 
   const imageSrc = uploadedFiles && uploadedFiles[0] && URL.createObjectURL(uploadedFiles[0])
-  logger.info({msg: "imageSrc", imageSrc})
+
+  const [imageFile] = uploadedFiles ?? []
+  const imageData = useImageUpload({image: imageFile})
+
+  logger.info({msg: "imageSrc", imageSrc, imageData})
 
   const lines: Line[] = [
     {
@@ -31,7 +36,11 @@ export const ImageEditor: FC = () => {
     <>
       <GuideLines {...{lines}} />
       <FileUploadInput onUpload={handleFileUpload}/>
-      <ImagePreview {...{imageSrc}}/>
+      <ImagePreview {...{
+        src: imageSrc,
+        width: imageData?.width,
+        height: imageData?.height,
+      }}/>
     </>
   )
 }
