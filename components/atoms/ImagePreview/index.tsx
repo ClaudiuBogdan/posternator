@@ -6,20 +6,24 @@ import { ImagePreviewStyled } from "./styles"
 const imagePlaceholder = "/assets/images/image-preview-placeholder.svg"
 
 type ImagePreviewProps = {
-  imageSrc?: string
+  src?: string
+  width?: number
+  height?: number
 }
 
-export const ImagePreview: FC<ImagePreviewProps> = ({imageSrc}) => {
+export const ImagePreview: FC<ImagePreviewProps> = ({src, width, height}) => {
   const handleImageClick = () => {
-    logger.info({msg: "File uploaded"})
+    logger.info({msg: "Poster image click"})
   }
+  const imageHeight = (width && height && `${height / width * 100}%`) ?? "100%"
+
   return (
     <ImagePreviewStyled>
       <Image
         layout="responsive"
         width="100%"
-        height="100%"
-        src={imageSrc ?? imagePlaceholder}
+        height={imageHeight}
+        src={src ?? imagePlaceholder}
         onClick={handleImageClick}
         alt="poster-preview" />
     </ImagePreviewStyled>
