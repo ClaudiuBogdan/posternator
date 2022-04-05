@@ -17,5 +17,6 @@ const Template: ComponentStory<typeof RadioInput> = (args) => <RadioInput {...ar
 export const Default = Template.bind({})
 Default.args = {
   id: "radio-1",
+  name: "radio-1",
   label: "Radio 1",
 }
