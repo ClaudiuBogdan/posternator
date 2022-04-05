@@ -2,6 +2,7 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import styled from "styled-components"
 import { ImageEditor } from "components/organism/ImageEditor"
+import { PosterOptions } from "components/organism/PosterOptions"
 
 const TitleStyled = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
@@ -20,6 +21,7 @@ const PosterCreator: NextPage = () => {
           Poster creator
         </TitleStyled>
         <ImageEditor/>
+        <PosterOptions/>
       </main>
     </div>
   )
