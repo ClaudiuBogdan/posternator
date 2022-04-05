@@ -1,26 +1,20 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { RadioInput } from "components/atoms/RadioInput"
+import logger from "global/logger"
+import { printOrientations } from "./data"
 import { PrintOrientationPickerStyled as PrintOrientationPickerStyled } from "./styles"
+import { PrintOrientation, PrintOrientationPickerProps } from "./types"
 
-type PrintOrientationPickerProps = {
+export const PrintOrientationPicker: FC<PrintOrientationPickerProps> = ({onChange}) => {
+  const [selectedOrientation, setSelectedOrientation] = useState<PrintOrientation>("vertical")
 
-}
-
-export const PrintOrientationPicker: FC<PrintOrientationPickerProps> = () => {
-  const [selectedOrientation, setSelectedOrientation] = useState("print-orientation-vertical")
-  const printOrientations = [
-    {
-      id: "print-orientation-vertical",
-      label: "Vertical",
-    },
-    {
-      id: "print-orientation-horizontal",
-      label: "Horizontal",
-    },
-  ]
+  useEffect(() => {
+    onChange && onChange(selectedOrientation)
+  }, [selectedOrientation, onChange])
 
   const handleOrientationSelected = (orientation: string) => {
-    setSelectedOrientation(orientation)
+    logger.info("Page orientation selected: " + orientation, {orientation})
+    setSelectedOrientation(orientation as PrintOrientation)
   }
 
   return (
@@ -31,7 +25,8 @@ export const PrintOrientationPicker: FC<PrintOrientationPickerProps> = () => {
         <RadioInput
           key={printFormat.id}
           id={printFormat.id}
-          checked={printFormat.id === selectedOrientation}
+          name={printFormat.name}
+          checked={printFormat.name === selectedOrientation}
           onOptionClick={handleOrientationSelected}
           label={printFormat.label} />
       ))}

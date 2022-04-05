@@ -1,14 +1,19 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { SizeInput } from "components/atoms/SizeInput"
 import { SizeInputStyled } from "./styles"
 import { PosterSize, SizePickerProps } from "./types"
 
-export const SizePicker: FC<SizePickerProps> = () => {
+export const SizePicker: FC<SizePickerProps> = ({onChange}) => {
   const initialSize: PosterSize = {
     width: 0.40,
     height: 0.50,
   }
   const [size, setSize] = useState<PosterSize>(initialSize)
+
+  useEffect(() => {
+    onChange && onChange(size)
+  }, [size, onChange])
+
   const handleWidthChange = (width: number) => {
     setSize({
       ...size,
