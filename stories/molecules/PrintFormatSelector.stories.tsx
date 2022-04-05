@@ -1,18 +1,15 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react"
-import { PrintFormatSelector } from "components/molecules/PrintFormatSelector"
+import { PrintFormatPicker } from "components/molecules/PrintFormatPicker"
 
 export default {
   title: "Molecules/PrintFormatSelector",
-  component: PrintFormatSelector,
+  component: PrintFormatPicker,
   argTypes: {
   },
-} as ComponentMeta<typeof PrintFormatSelector>
+} as ComponentMeta<typeof PrintFormatPicker>
 
-const Template: ComponentStory<typeof PrintFormatSelector> = (args) => <PrintFormatSelector {...args}/>
+const Template: ComponentStory<typeof PrintFormatPicker> = (args) => <PrintFormatPicker {...args}/>
 
 export const Default = Template.bind({})
 Default.args = {
-  selectedOptionId: "A4",
-  onOptionSelected: (optionId: string) => {
-  },
 }
