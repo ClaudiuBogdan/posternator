@@ -8,22 +8,32 @@ const TitleStyled = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
 `
 
+const PosterCreatorStyled = styled.div`
+  > main {
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) minmax(250px, 1fr);
+    grid-gap: 30px;
+  }
+`
+
 const PosterCreator: NextPage = () => {
   return (
-    <div>
+    <PosterCreatorStyled>
       <Head>
         <title>Poster creator</title>
         <meta name="description" content="Create your incredible poster with printed files" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <TitleStyled>
+
+      <TitleStyled>
           Poster creator
-        </TitleStyled>
+      </TitleStyled>
+
+      <main>
         <ImageEditor/>
         <PosterOptions/>
       </main>
-    </div>
+    </PosterCreatorStyled>
   )
 }
 

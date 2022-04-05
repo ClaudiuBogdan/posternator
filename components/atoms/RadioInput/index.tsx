@@ -15,6 +15,7 @@ export const RadioInput: FC<RadioInputProps> = ({id, name, label, checked, onOpt
       <input
         type="radio"
         name={name}
+        onChange={() => void 0}
         checked={!!checked}
         id={id} />
 

@@ -33,7 +33,7 @@ export const ImageEditor: FC = () => {
   ]
 
   return (
-    <>
+    <div>
       <GuideLines {...{lines}} />
       <FileUploadInput onUpload={handleFileUpload}/>
       <ImagePreview {...{
@@ -41,6 +41,6 @@ export const ImageEditor: FC = () => {
         width: imageData?.width,
         height: imageData?.height,
       }}/>
-    </>
+    </div>
   )
 }
