@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react"
 import { RadioInput } from "components/atoms/RadioInput"
-import logger from "global/logger"
 import { printOrientations } from "./data"
 import { PrintOrientationPickerStyled as PrintOrientationPickerStyled } from "./styles"
 import { PrintOrientation, PrintOrientationPickerProps } from "./types"
@@ -13,7 +12,6 @@ export const PrintOrientationPicker: FC<PrintOrientationPickerProps> = ({onChang
   }, [selectedOrientation, onChange])
 
   const handleOrientationSelected = (orientation: string) => {
-    logger.info("Page orientation selected: " + orientation, {orientation})
     setSelectedOrientation(orientation as PrintOrientation)
   }
 
@@ -33,3 +31,5 @@ export const PrintOrientationPicker: FC<PrintOrientationPickerProps> = ({onChang
     </PrintOrientationPickerStyled>
   )
 }
+
+export type {PrintOrientation}
