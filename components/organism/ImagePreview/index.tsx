@@ -13,14 +13,18 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
   const [uploadedFiles, setUploadedFiles] = useState<File[]>()
   const [imagePreviewData, setImagePreviewData] = useState<ImagePreviewData>()
   const [imageFile] = uploadedFiles ?? []
-  const imageData = useImageUpload({image: imageFile})
+  const imageUploadData = useImageUpload({image: imageFile})
   const imageSrc = uploadedFiles && uploadedFiles[0] && URL.createObjectURL(uploadedFiles[0])
 
   useEffect(() => {
-    if(!imageData || !onImageDataChange)
+    if(!imageUploadData || !onImageDataChange || !imageSrc)
       return
+    const imageData = {
+      src: imageSrc,
+      ...imageUploadData,
+    }
     onImageDataChange(imageData)
-  }, [imageData, onImageDataChange])
+  }, [imageUploadData, onImageDataChange, imageSrc])
 
   const handleFileUpload = (acceptedFiles: File[]) => {
     logger.info({msg: "File uploaded"})
@@ -40,8 +44,8 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
       <FileUploadInput onUpload={handleFileUpload}/>
       <ImageInput {...{
         src: imageSrc,
-        width: imageData?.width,
-        height: imageData?.height,
+        width: imageUploadData?.width,
+        height: imageUploadData?.height,
         onChange: handleImageChange,
       }}/>
     </div>

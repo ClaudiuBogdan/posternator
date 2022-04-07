@@ -4,16 +4,16 @@ import logger from "global/logger"
 import { PdfDownloaderProps } from "./types"
 import { generatePdf } from "./utils"
 
-export const PdfDownloader: FC<PdfDownloaderProps> = ({imageData}) => {
+export const PdfDownloader: FC<PdfDownloaderProps> = ({imageData, posterData}) => {
 
-  const disabled = !imageData
+  const disabled = !(imageData && posterData)
 
   const handleDownloadClick = () => {
     logger.info("Download PDF click")
-    if(!imageData)
+    if(disabled)
       return
 
-    generatePdf(imageData.src)
+    generatePdf(imageData, posterData)
     logger.info("Pdf generated")
   }
 
