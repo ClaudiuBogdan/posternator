@@ -5,7 +5,7 @@ type useImageUploadProps = {
     image?: File
 }
 
-type ImageData = {
+export type ImageData = {
   width: number
   height: number
 }
