@@ -1,8 +1,9 @@
 export type SizePickerProps = {
-    onChange?: (size: PosterSize) => void;
+    imageSize?: Size
+    onChange?: (size: Size) => void;
 }
 
-export type PosterSize = {
+export type Size = {
     width: number
     height: number
 }

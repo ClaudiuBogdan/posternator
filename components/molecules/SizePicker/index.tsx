@@ -1,29 +1,46 @@
 import { FC, useEffect, useState } from "react"
 import { SizeInput } from "components/atoms/SizeInput"
 import { SizeInputStyled } from "./styles"
-import { PosterSize, SizePickerProps } from "./types"
+import { Size, SizePickerProps } from "./types"
 
-export const SizePicker: FC<SizePickerProps> = ({onChange}) => {
-  const initialSize: PosterSize = {
-    width: 0.40,
-    height: 0.50,
-  }
-  const [size, setSize] = useState<PosterSize>(initialSize)
+const initialSize: Size = {
+  width: 0.80,
+  height: 0.50,
+}
+
+export const SizePicker: FC<SizePickerProps> = ({imageSize, onChange}) => {
+
+  const [size, setSize] = useState<Size>(initialSize)
 
   useEffect(() => {
-    onChange && onChange(size)
+    if(!imageSize) return
+
+    const height =  imageSize ? initialSize.width * imageSize.height / imageSize.width : initialSize.height
+    setSize({
+      height,
+      width: initialSize.width,
+    })
+  }, [imageSize])
+
+  useEffect(() => {
+    if(!onChange || !size.width || !size.height)
+      return
+
+    onChange(size)
   }, [size, onChange])
 
   const handleWidthChange = (width: number) => {
+    const height =  imageSize ? width * imageSize.height / imageSize.width : size.height
     setSize({
-      ...size,
+      height,
       width,
     })
   }
 
   const handleHeightChange = (height: number) => {
+    const width =  imageSize ? height * imageSize.width / imageSize.height : size.width
     setSize({
-      ...size,
+      width,
       height,
     })
   }
@@ -42,3 +59,5 @@ export const SizePicker: FC<SizePickerProps> = ({onChange}) => {
     </SizeInputStyled>
   )
 }
+
+export type { Size }
