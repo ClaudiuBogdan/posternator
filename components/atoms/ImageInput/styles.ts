@@ -1,5 +1,5 @@
 import styled from "styled-components"
 
-export const ImagePreviewStyled = styled.div`
+export const ImageInputStyled = styled.div`
   width: 100%;
 `
