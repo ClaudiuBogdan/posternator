@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "formidable": "^2.0.1",
+    "jspdf": "^2.5.1",
     "next": "12.1.2",
     "pino": "^7.9.2",
     "pino-logflare": "^0.3.12",
