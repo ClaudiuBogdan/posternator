@@ -6,7 +6,7 @@ const initLogger = () => {
   // For local env and testing disable logflare
   if(config.env === "development" || config.env === "test")
     return pino({
-      level: "debug",
+      level: config.logger.level,
       base: {
         env: config.env,
         revision: config.revision,
@@ -22,11 +22,10 @@ const initLogger = () => {
   return pino({
     browser: {
       transmit: {
-        level: "info",
+        level: config.logger.level,
         send: send,
       },
     },
-    level: "debug",
     base: {
       env: config.env,
       revision: config.revision,

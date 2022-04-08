@@ -13,6 +13,7 @@ const loadConfigs = () => {
     env: loadRequiredEnv("NEXT_PUBLIC_NODE_ENV"),
     revision: loadRequiredEnv("NEXT_PUBLIC_VERCEL_GITHUB_COMMIT_SHA"),
     logger: {
+      level: loadRequiredEnv("NEXT_PUBLIC_LOGGER_LEVEL"),
       apiKey: loadRequiredEnv("NEXT_PUBLIC_LOGGER_API_KEY"),
       sourceToken: loadRequiredEnv("NEXT_PUBLIC_LOGGER_SOURCE_TOKEN"),
     },
