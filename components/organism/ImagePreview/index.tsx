@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { FileUploadInput } from "components/atoms/FileUploadInput"
 import { ImageInput } from "components/atoms/ImageInput"
 import { ImagePreviewData } from "components/atoms/ImageInput/types"
@@ -14,7 +14,7 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
   const [imagePreviewData, setImagePreviewData] = useState<ImagePreviewData>()
   const [imageFile] = uploadedFiles ?? []
   const imageUploadData = useImageUpload({image: imageFile})
-  const imageSrc = uploadedFiles && uploadedFiles[0] && URL.createObjectURL(uploadedFiles[0])
+  const imageSrc = useMemo(() => uploadedFiles && uploadedFiles[0] && URL.createObjectURL(uploadedFiles[0]), [uploadedFiles])
 
   useEffect(() => {
     if(!imageUploadData || !onImageDataChange || !imageSrc)
@@ -36,7 +36,7 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
     setImagePreviewData(imageData)
   }, [])
 
-  const lines = imagePreviewData && posterData ? generateGridLines({posterData, imagePreviewData}) : []
+  const lines = useMemo(() => imagePreviewData && posterData ? generateGridLines({posterData, imagePreviewData}) : [] , [imagePreviewData, posterData])
 
   return (
     <div>

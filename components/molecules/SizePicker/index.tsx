@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { SizeInput } from "components/atoms/SizeInput"
 import { SizeInputStyled } from "./styles"
 import { Size, SizePickerProps } from "./types"
@@ -12,38 +12,22 @@ export const SizePicker: FC<SizePickerProps> = ({imageSize, onChange}) => {
 
   const [size, setSize] = useState<Size>(initialSize)
 
-  useEffect(() => {
-    if(!imageSize) return
-
-    const height =  imageSize ? initialSize.width * imageSize.height / imageSize.width : initialSize.height
-    setSize({
-      height,
-      width: initialSize.width,
-    })
-  }, [imageSize])
-
-  useEffect(() => {
-    if(!onChange || !size.width || !size.height)
-      return
-
-    onChange(size)
-  }, [size, onChange])
-
   const handleWidthChange = (width: number) => {
     const height =  imageSize ? width * imageSize.height / imageSize.width : size.height
-    setSize({
-      height,
-      width,
-    })
+    setSize({ height, width})
+
+    if(onChange && size.width && size.height)
+      return onChange(size)
   }
 
   const handleHeightChange = (height: number) => {
     const width =  imageSize ? height * imageSize.width / imageSize.height : size.width
-    setSize({
-      width,
-      height,
-    })
+    setSize({ width, height })
+
+    if(onChange && size.width && size.height)
+      return onChange(size)
   }
+
   return (
     <SizeInputStyled>
       <SizeInput

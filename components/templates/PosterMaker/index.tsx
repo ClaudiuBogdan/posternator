@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { PdfDownloader } from "components/molecules/PdfDownloader"
 import { PrintFormat } from "components/molecules/PrintFormatPicker"
 import { PrintOrientation } from "components/molecules/PrintOrientationPicker"
@@ -13,11 +13,12 @@ export const PosterMaker: FC = () => {
   const [orientation, setOrientation] = useState<PrintOrientation>()
   const [imageData, setImageData] = useState<ImageData>()
 
-  const posterData = format && size && orientation && {
-    format,
-    size,
-    orientation,
-  }
+  const posterData = useMemo(() => format && size && orientation && (
+    {
+      format,
+      size,
+      orientation,
+    }), [format, size, orientation])
 
   return (
     <>

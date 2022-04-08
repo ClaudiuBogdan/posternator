@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { PrintFormatPicker } from "components/molecules/PrintFormatPicker"
 import { printFormats } from "components/molecules/PrintFormatPicker/data"
 import { PrintOrientationPicker } from "components/molecules/PrintOrientationPicker"
@@ -10,21 +10,21 @@ import { PosterOptionsProps } from "./types"
 
 export const PosterOptions: FC<PosterOptionsProps> = ({imageSize, onSizeChange, onPrintFormatChange, onOrientationChange}) => {
 
-  const handleSizeChange = (size: Size) => {
+  const handleSizeChange = useCallback((size: Size) => {
     logger.info("Poster size changed: " + size, {size})
     onSizeChange && onSizeChange(size)
-  }
+  }, [onSizeChange])
 
-  const handlePrintFormatChange = (printFormatId: string) => {
+  const handlePrintFormatChange = useCallback((printFormatId: string) => {
     logger.info("Poster print format changed: " + printFormatId, {printFormatId})
     const printFormat = printFormats[printFormatId]
     onPrintFormatChange && onPrintFormatChange(printFormat)
-  }
+  }, [onPrintFormatChange])
 
-  const handlePrintOrientationChange = (printOrientation: PrintOrientation) => {
+  const handlePrintOrientationChange = useCallback((printOrientation: PrintOrientation) => {
     logger.info("Poster print orientation changed: " + printOrientation, {printOrientation})
     onOrientationChange && onOrientationChange(printOrientation)
-  }
+  }, [onOrientationChange])
 
   return (
     <PosterOptionsStyled>
