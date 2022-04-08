@@ -38,4 +38,4 @@ export type PdfDownloaderProps = {
     posterData?: PosterData
 }
 
-export type CalculateImagePartition = (imageData: ImageData, posterData: PosterData) => PdfImagePartition[]
+export type CalculateImagePartition = (posterData: PosterData) => PdfImagePartition[]
