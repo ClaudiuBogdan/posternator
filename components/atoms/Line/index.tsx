@@ -8,5 +8,8 @@ export const Line: FC<LineProps> = ({id, position, length, orientation}) => {
     $position: position,
     $length: length,
     $orientation: orientation,
-  }}/>
+  }}>
+    <path d={`M 00,00 V ${length}`}/>
+    <path d={`M 00,00 V ${length}`}/>
+  </LineStyled>
 }
