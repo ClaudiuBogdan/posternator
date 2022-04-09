@@ -1,6 +1,7 @@
 import Image from "next/image"
-import { FC, useEffect, useRef } from "react"
+import { FC, useCallback, useEffect, useRef } from "react"
 import logger from "global/logger"
+import { useWindowSize } from "hooks/useWindowSize"
 import { ImageInputStyled } from "./styles"
 import { ImageInputProps, OnLoadingComplete } from "./types"
 
@@ -9,39 +10,40 @@ const imagePlaceholder = "/assets/images/image-preview-placeholder.svg"
 export const ImageInput: FC<ImageInputProps> = ({src, width, height, onChange: onChange}) => {
 
   const imageRef = useRef<HTMLDivElement>(null)
-  const imageElement = imageRef.current
+  const windowSize = useWindowSize()
+  const imageHeight = (width && height && `${height / width * 100}%`) ?? "100%"
 
-  useEffect(() => {
+  const triggerImageChange = useCallback( () => {
+    const imageElement = imageRef.current
+
     if(!imageElement)
       return
 
-    const size = {
-      width: imageElement.offsetWidth,
-      height: imageElement.offsetHeight,
-    }
+    const width = imageElement.offsetWidth
+    const height = imageElement.offsetHeight
+    const x = imageElement.offsetLeft
+    const y = imageElement.offsetTop
 
-    const position = {
-      x: imageElement.offsetLeft,
-      y: imageElement.offsetTop,
-    }
+    const size = { width, height }
+    const position = { x, y }
 
-    const imageData = {
-      size,
-      position,
-    }
+    const imageData = { size, position }
 
     onChange && onChange(imageData)
-  }, [imageElement, onChange])
+  }, [onChange])
+
+  useEffect(() => {
+    triggerImageChange()
+  }, [windowSize, triggerImageChange, imageHeight])
+
+  const handleImageLoaded: OnLoadingComplete = (result) => {
+    logger.info({msg: "Poster image preview loaded", result})
+    triggerImageChange()
+  }
 
   const handleImageClick = () => {
     logger.info({msg: "Poster image click"})
   }
-
-  const handleImageLoaded: OnLoadingComplete = (result) => {
-    logger.info({msg: "Poster image preview loaded", result})
-  }
-
-  const imageHeight = (width && height && `${height / width * 100}%`) ?? "100%"
 
   return (
     <ImageInputStyled ref={imageRef} >

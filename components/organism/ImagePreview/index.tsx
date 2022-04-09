@@ -40,14 +40,17 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
 
   return (
     <div>
-      <GuideLines {...{lines}} />
       <FileUploadInput onUpload={handleFileUpload}/>
-      <ImageInput {...{
-        src: imageSrc,
-        width: imageUploadData?.width,
-        height: imageUploadData?.height,
-        onChange: handleImageChange,
-      }}/>
+      <div>
+        <GuideLines {...{lines}} />
+        <ImageInput {...{
+          src: imageSrc,
+          width: imageUploadData?.width,
+          height: imageUploadData?.height,
+          onChange: handleImageChange,
+        }}/>
+      </div>
+
     </div>
   )
 }

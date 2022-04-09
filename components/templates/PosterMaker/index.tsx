@@ -26,21 +26,18 @@ export const PosterMaker: FC = () => {
         posterData,
         onImageDataChange: setImageData,
       }}/>
-      <div>
 
-        <PosterOptions {...{
-          imageSize: imageData,
-          onSizeChange: setSize,
-          onPrintFormatChange: setFormat,
-          onOrientationChange: setOrientation,
-        }}/>
+      <PosterOptions {...{
+        imageSize: imageData,
+        onSizeChange: setSize,
+        onPrintFormatChange: setFormat,
+        onOrientationChange: setOrientation,
+      }}/>
 
-        <PdfDownloader {...{
-          imageData,
-          posterData,
-        }}/>
-
-      </div>
+      <PdfDownloader {...{
+        imageData,
+        posterData,
+      }}/>
     </>
   )
 }
