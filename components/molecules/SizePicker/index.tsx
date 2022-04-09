@@ -2,6 +2,7 @@ import { FC, useState } from "react"
 import { SizeInput } from "components/atoms/SizeInput"
 import { SizeInputStyled } from "./styles"
 import { Size, SizePickerProps } from "./types"
+import { calculateSizeFromHeight, calculateSizeFromWidth } from "./utils"
 
 const initialSize: Size = {
   width: 0.80,
@@ -11,18 +12,27 @@ const initialSize: Size = {
 export const SizePicker: FC<SizePickerProps> = ({imageSize, onChange}) => {
 
   const [size, setSize] = useState<Size>(initialSize)
+  const maxSize = 10 // meters
+  const decimalRoundFactor = 100000
+  const aspectRation = imageSize && Math.round(imageSize.width / imageSize.height * decimalRoundFactor) / decimalRoundFactor
 
   const handleWidthChange = (width: number) => {
-    const height =  imageSize ? width * imageSize.height / imageSize.width : size.height
-    setSize({ height, width})
+    if(!aspectRation)
+      return
+
+    const newSize =  calculateSizeFromWidth({width, maxSize, aspectRation})
+    setSize(newSize)
 
     if(onChange && size.width && size.height)
       return onChange(size)
   }
 
   const handleHeightChange = (height: number) => {
-    const width =  imageSize ? height * imageSize.width / imageSize.height : size.width
-    setSize({ width, height })
+    if(!aspectRation)
+      return
+
+    const newSize =  calculateSizeFromHeight({height, maxSize, aspectRation})
+    setSize(newSize)
 
     if(onChange && size.width && size.height)
       return onChange(size)

@@ -10,11 +10,11 @@ export const SizeInput: FC<SizeInputProps> = ({id, value = 0.15, label, onChange
     onChange(meters)
   }
 
-  const centimeters = value * 100
+  const centimeters = Math.round(value * 10000) / 100
 
   return (
     <SizeInputStyled>
-      <input id={id} type="number" min={1} value={centimeters} step={1} onChange={handleOnChange}/>
+      <input id={id} type="number" min={1} max={1000} value={centimeters} step={1} onChange={handleOnChange}/>
       <label htmlFor={id}> cm {label}</label>
     </SizeInputStyled>
   )
