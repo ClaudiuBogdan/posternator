@@ -12,7 +12,7 @@ export const LineStyled = styled.svg.attrs<LineStyledProps>(({$length, $orientat
   }}))`
     position: absolute;
     z-index: 100;
-    width: 1px;
+    width: 2px;
     transform-origin: top;
 
 
