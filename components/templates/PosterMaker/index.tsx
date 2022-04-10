@@ -3,6 +3,7 @@ import { PdfDownloader } from "components/molecules/PdfDownloader"
 import { PrintFormat } from "components/molecules/PrintFormatPicker"
 import { PrintOrientation } from "components/molecules/PrintOrientationPicker"
 import { Size } from "components/molecules/SizePicker"
+import { ImageCropper } from "components/organism/ImageCropper"
 import { ImagePreview } from "components/organism/ImagePreview"
 import { ImageData } from "components/organism/ImagePreview/types"
 import { PosterOptions } from "components/organism/PosterOptions"
@@ -38,6 +39,7 @@ export const PosterMaker: FC = () => {
         imageData,
         posterData,
       }}/>
+      { imageData && <ImageCropper {...{src: imageData.src}}/> }
     </>
   )
 }
