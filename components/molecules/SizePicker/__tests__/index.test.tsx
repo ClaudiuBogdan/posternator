@@ -33,6 +33,17 @@ describe("Calculate new height based on width, maxSize and aspectRation", () => 
     expect(size.width).toBe(maxSize)
     expect(size.height).toBe(maxSize/aspectRation)
   })
+
+  test("should return 0 for height when width is 0", async () => {
+    const aspectRation = 2
+    const maxSize = 100
+    const width = 0
+
+    const size = calculateSizeFromWidth({width, aspectRation, maxSize})
+
+    expect(size.width).toBe(width)
+    expect(size.height).toBe(0)
+  })
 })
 
 describe("Calculate new width based on height, maxSize and aspectRation", () => {
@@ -67,5 +78,16 @@ describe("Calculate new width based on height, maxSize and aspectRation", () => 
 
     expect(size.width).toBe(maxSize)
     expect(size.height).toBe(maxSize/aspectRation)
+  })
+
+  test("should return 0 for width when height is 0", async () => {
+    const aspectRation = 2
+    const maxSize = 100
+    const height = 0
+
+    const size = calculateSizeFromHeight({height, aspectRation, maxSize})
+
+    expect(size.width).toBe(0)
+    expect(size.height).toBe(height)
   })
 })
