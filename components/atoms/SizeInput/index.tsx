@@ -14,7 +14,7 @@ export const SizeInput: FC<SizeInputProps> = ({id, value = 0.15, label, onChange
 
   return (
     <SizeInputStyled>
-      <input id={id} type="number" min={1} max={1000} value={centimeters} step={1} onChange={handleOnChange}/>
+      <input id={id} type="number" min={1} max={1000} value={Number(centimeters).toString()} step={1} onChange={handleOnChange}/>
       <label htmlFor={id}> cm {label}</label>
     </SizeInputStyled>
   )
