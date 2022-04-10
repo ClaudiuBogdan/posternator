@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { FileUploadInput } from "components/atoms/FileUploadInput"
 import { ImageInput } from "components/atoms/ImageInput"
 import { ImagePreviewData } from "components/atoms/ImageInput/types"
@@ -12,17 +12,34 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>()
   const [imagePreviewData, setImagePreviewData] = useState<ImagePreviewData>()
+  const [imageSrc, setImageSrc] = useState<string>()
+  const prevImageRef = useRef<string>()
+
   const [imageFile] = uploadedFiles ?? []
   const imageUploadData = useImageUpload({image: imageFile})
-  const imageSrc = useMemo(() => uploadedFiles && uploadedFiles[0] && URL.createObjectURL(uploadedFiles[0]), [uploadedFiles])
 
+  // Update image src if new file uploaded
+  useEffect(() => {
+    // Remove prev image from DOM
+    if(prevImageRef.current)
+      URL.revokeObjectURL(prevImageRef.current)
+
+    const newImageSrc = imageFile && URL.createObjectURL(imageFile)
+    setImageSrc(newImageSrc)
+
+    prevImageRef.current = newImageSrc
+  }, [imageFile])
+
+  // Propagate image data change event to the parent component
   useEffect(() => {
     if(!imageUploadData || !onImageDataChange || !imageSrc)
       return
+
     const imageData = {
       src: imageSrc,
       ...imageUploadData,
     }
+
     onImageDataChange(imageData)
   }, [imageUploadData, onImageDataChange, imageSrc])
 
