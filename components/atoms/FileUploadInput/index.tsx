@@ -1,5 +1,6 @@
 import { DragEventHandler, FC } from "react"
 import {useDropzone} from "react-dropzone"
+import { FileUploadInputStyled } from "./styles"
 
 type FileUploadInputProps = {
   onDragEnter?: DragEventHandler;
@@ -7,16 +8,21 @@ type FileUploadInputProps = {
 }
 
 export const FileUploadInput: FC<FileUploadInputProps> = ({onDragEnter, onUpload}) => {
+
   const accept = ".jpeg,.jpg,.png,.gif"
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop: onUpload, onDragEnter, accept})
+
+  const {
+    getRootProps,
+    getInputProps,
+    isFocused,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({onDragEnter, onDropAccepted: onUpload, multiple: false, accept})
 
   return (
-    <div {...getRootProps()} data-testid="file-upload-field">
+    <FileUploadInputStyled {...getRootProps({isFocused, isDragAccept, isDragReject})}>
       <input {...getInputProps()} />
-      { isDragActive ?
-        <p>Drop the files here ...</p> :
-        <p>Drag n drop some files here, or click to select files</p>
-      }
-    </div>
+      <p>Click here to select an image</p>
+    </FileUploadInputStyled>
   )
 }
