@@ -6,6 +6,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    font-family: 'Inter', Arial, sans-serif;
   }
   * {
     box-sizing: border-box;
