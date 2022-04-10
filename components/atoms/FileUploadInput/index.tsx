@@ -7,8 +7,8 @@ type FileUploadInputProps = {
 }
 
 export const FileUploadInput: FC<FileUploadInputProps> = ({onDragEnter, onUpload}) => {
-
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop: onUpload, onDragEnter})
+  const accept = ".jpeg,.jpg,.png,.gif"
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop: onUpload, onDragEnter, accept})
 
   return (
     <div {...getRootProps()} data-testid="file-upload-field">
