@@ -21,7 +21,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  logger.info({msg: "Image data request received"})
+  logger.info( "Image data request received")
   const form = formidable({ keepExtensions: true })
 
   const parseImage = async () => new Promise<Data>((resolve, reject) => {
@@ -53,7 +53,7 @@ export default async function handler(
     // TODO: read image size
     const data = await parseImage()
     res.status(201).send(data)
-    logger.info({msg: "Image data request completed successfully", data})
+    logger.info("Image data request completed successfully", {data})
   }
   catch(err){
     logger.error({msg: "Image data request completed failed", err})

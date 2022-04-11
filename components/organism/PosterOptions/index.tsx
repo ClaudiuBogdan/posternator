@@ -11,18 +11,18 @@ import { PosterOptionsProps } from "./types"
 export const PosterOptions: FC<PosterOptionsProps> = ({imageSize, onSizeChange, onPrintFormatChange, onOrientationChange}) => {
 
   const handleSizeChange = useCallback((size: Size) => {
-    logger.info({msg: "[Options] size changed", size})
+    logger.info("[Options] size changed", {size})
     onSizeChange && onSizeChange(size)
   }, [onSizeChange])
 
   const handlePrintFormatChange = useCallback((printFormatId: string) => {
-    logger.info({ msg: "[Options] print format changed", printFormatId})
+    logger.info("[Options] print format changed", { printFormatId})
     const printFormat = printFormats[printFormatId]
     onPrintFormatChange && onPrintFormatChange(printFormat)
   }, [onPrintFormatChange])
 
   const handlePrintOrientationChange = useCallback((printOrientation: PrintOrientation) => {
-    logger.info({ msg: "[Options] print orientation changed", printOrientation})
+    logger.info("[Options] print orientation changed", { printOrientation})
     onOrientationChange && onOrientationChange(printOrientation)
   }, [onOrientationChange])
 

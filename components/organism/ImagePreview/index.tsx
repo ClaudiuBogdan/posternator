@@ -44,12 +44,12 @@ export const ImagePreview: FC<ImagePreviewProps> = ({posterData, onImageDataChan
   }, [imageUploadData, onImageDataChange, imageSrc])
 
   const handleFileUpload = (acceptedFiles: File[]) => {
-    logger.info({msg: "File uploaded"})
+    logger.info("File uploaded")
     setUploadedFiles(acceptedFiles)
   }
 
   const handleImageChange = useCallback((imageData: ImagePreviewData) => {
-    logger.info({msg: "Image preview changed", imageData})
+    logger.info("Image preview changed", {imageData})
     setImagePreviewData(imageData)
   }, [])
 

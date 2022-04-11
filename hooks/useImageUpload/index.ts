@@ -17,7 +17,7 @@ export const useImageUpload = ({image}: useImageUploadProps) => {
   useEffect(() => {
     if(!image) return
 
-    logger.info({msg: "Image data request started"})
+    logger.info("Image data request started")
 
     const body = new FormData()
     body.append("file", image)
@@ -27,11 +27,11 @@ export const useImageUpload = ({image}: useImageUploadProps) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        logger.info({msg: "Image data loaded", data})
+        logger.info( "Image data loaded", {data})
         setImageData(data.imageData)
       })
       .catch((err) => {
-        logger.error({msg: "Image data request failed", err})
+        logger.error( "Image data request failed", {err})
       })
 
   }, [image])

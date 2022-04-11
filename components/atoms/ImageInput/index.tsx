@@ -5,7 +5,7 @@ import { useWindowSize } from "hooks/useWindowSize"
 import { ImageInputStyled } from "./styles"
 import { ImageInputProps, OnLoadingComplete } from "./types"
 
-const imagePlaceholder = "/assets/images/image-preview-placeholder.svg"
+const imagePlaceholder = "/assets/images/image-preview-placeholder.jpg"
 
 export const ImageInput: FC<ImageInputProps> = ({src, width, height, onChange: onChange}) => {
 
@@ -37,12 +37,12 @@ export const ImageInput: FC<ImageInputProps> = ({src, width, height, onChange: o
   }, [windowSize, triggerImageChange, imageHeight])
 
   const handleImageLoaded: OnLoadingComplete = (result) => {
-    logger.info({msg: "Poster image preview loaded", result})
+    logger.info( "Poster image preview loaded", {result})
     triggerImageChange()
   }
 
   const handleImageClick = () => {
-    logger.info({msg: "Poster image click"})
+    logger.info("Poster image click")
   }
 
   return (
