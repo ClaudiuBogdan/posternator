@@ -5,7 +5,7 @@ import { useWindowSize } from "hooks/useWindowSize"
 import { ImageInputStyled } from "./styles"
 import { ImageInputProps, OnLoadingComplete } from "./types"
 
-const imagePlaceholder = "/assets/images/image-preview-placeholder.jpg"
+const imagePlaceholder = "/assets/images/image-preview-placeholder.svg"
 
 export const ImageInput: FC<ImageInputProps> = ({src, width, height, onChange: onChange}) => {
 
